@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Spark logs
+spark/logs/*
+
+# Jupyter checkpoints
+*.ipynb_checkpoints

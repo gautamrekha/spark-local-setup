@@ -1,0 +1,44 @@
+{
+  "name": "PySpark Dev Container",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "pyspark",
+  "workspaceFolder": "/home/jovyan",
+  "shutdownAction": "stopCompose",
+
+  "remoteEnv": {
+    "SPARK_HOME": "/usr/local/spark",
+    "PYTHONPATH": "/usr/local/spark/python:/usr/local/spark/python/lib/py4j-0.10.9.7-src.zip",
+    "PATH": "/opt/conda/bin:/usr/local/spark/bin:${containerEnv:PATH}"
+  },
+
+  "mounts": [
+    "source=${localWorkspaceFolder}/notebooks,target=/home/jovyan/notebooks,type=bind",
+    "source=${localWorkspaceFolder}/jobs,target=/home/jovyan/jobs,type=bind",
+    "source=${localWorkspaceFolder}/spark/logs,target=/home/jovyan/spark/logs,type=bind"
+  ],
+
+  "postCreateCommand": "pip install --user -r /home/jovyan/requirements.txt",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-slideshow",
+        "ms-azuretools.vscode-docker",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "python.pythonPath": "/opt/conda/bin/python",
+        "python.defaultInterpreterPath": "/opt/conda/bin/python",
+        "python.autoComplete.extraPaths": [
+          "/usr/local/spark/python",
+          "/usr/local/spark/python/lib/py4j-0.10.9.7-src.zip"
+        ]
+      }
+    }
+  },
+
+  "remoteUser": "jovyan"
+}

@@ -1,0 +1,26 @@
+services:
+  pyspark:
+    image: jupyter/pyspark-notebook:latest
+    container_name: pyspark
+    environment:
+      # Token to access JupyterLab
+      - JUPYTER_TOKEN=secret
+      # Use JupyterLab as default
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS=lab
+    ports:
+      - "8888:8888"           # Jupyter Notebook/Lab
+      - "4040-4049:4040-4049" # Spark Application UI
+      - "18080:18080"         # Spark History Server
+    volumes:
+      - ./notebooks:/home/jovyan/notebooks
+      - ./jobs:/home/jovyan/jobs
+      - ./spark/logs:/home/jovyan/spark/logs
+      - ./requirements.txt:/home/jovyan/requirements.txt
+
+    networks:
+      - spark-net
+
+networks:
+  spark-net:
+    driver: bridge
