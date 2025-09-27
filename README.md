@@ -83,7 +83,7 @@ project-root/
 3. **Run PySpark scripts inside the container**
 
     ```bash
-    docker exec -it jupyter bash
+    docker exec -it pyspark bash
     python /home/jovyan/jobs/example_job.py
     ```
 
@@ -108,7 +108,7 @@ findspark
 
 - **If using Dev Container:**
 
-    Press `Ctrl+Shift+P` → Dev Containers: Rebuild and Reopen in Container
+    Press `fn + F1` → search “Dev Containers: Rebuild and Reopen in Container”
 
 - **If using Docker Compose directly:**
 

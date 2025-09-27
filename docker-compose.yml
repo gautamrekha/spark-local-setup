@@ -8,6 +8,9 @@ services:
       # Use JupyterLab as default
       - PYSPARK_DRIVER_PYTHON=jupyter
       - PYSPARK_DRIVER_PYTHON_OPTS=lab
+      - SPARK_HOME=/usr/local/spark
+      - PYTHONPATH=/usr/local/spark/python:/usr/local/spark/python/lib/py4j-0.10.9.7-src.zip
+      - PATH=/opt/conda/bin:/usr/local/spark/bin:${PATH}
     ports:
       - "8888:8888"           # Jupyter Notebook/Lab
       - "4040-4049:4040-4049" # Spark Application UI
